@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import init from "./reducers/init";
+import operations from "./reducers/operations";
 
-const reducer = combineReducers({ init });
+const reducer = combineReducers({ operations });
 
 export default reducer;
