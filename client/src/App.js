@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import OperationsInsert from "./components/OperationsInsert";
+import React from "react";
+import { ThemeProvider } from "@mui/material";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <OperationsInsert />
+    </LocalizationProvider>
   );
-}
+};
 
 export default App;
