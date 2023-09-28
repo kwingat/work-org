@@ -9,9 +9,15 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
 
+app.post("/api/operations", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+module.exports = app;
 
 // const { MongoClient } = require("mongodb");
 

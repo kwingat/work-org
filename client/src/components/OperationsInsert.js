@@ -12,7 +12,7 @@ import { Button } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Fragment } from "react";
 import dayjs from "dayjs";
-import { get } from "lodash";
+import { insertOperation } from "../services/actions/operations";
 
 const OperationsInsert = () => {
   const { name, devComp, uatStart, uatComp, implement } = useSelector(
@@ -20,7 +20,10 @@ const OperationsInsert = () => {
   );
   const dispatch = useDispatch();
 
-  const submitAdd = async (e) => {};
+  const submitAdd = async (e) => {
+    dispatch(insertOperation({ name, devComp, uatStart, uatComp, implement }));
+  };
+
   const onChange = (e) => {
     const { name = "", value = "" } = e;
 
