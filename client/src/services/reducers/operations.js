@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  name: "",
+  name: '',
   devComp: null,
   uatStart: null,
   uatComp: null,
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const operationSlice = createSlice({
-  name: "operation",
+  name: 'operation',
   initialState,
   reducers: {
     setName(state, action) {
