@@ -30,9 +30,10 @@ process.on("SIGINT", () => {
 process.on("exist", () => {
   process.exit();
 });
+
 mongoose.set("strictQuery", false);
 const main = async () => {
-  const uri = "mongodb://0.0.0.0:27017/test";
+  const uri = "mongodb://0.0.0.0:27017/work-org-db";
   console.log("uri", uri);
   await mongoose.connect(uri);
 };

@@ -5,11 +5,21 @@ const createNewOperation = async (operation) => {
   return new Operation({ name, devComp, uatStart, uatComp, implement });
 };
 
+const deleteAllOperations = async () => {
+  return Operation.deleteMany({});
+};
+
+const getOperations = async () => {
+  return Operation.find({});
+};
+
 const insertOperation = async (operation) => {
   return operation.save();
 };
 
 module.exports = {
   createNewOperation,
+  deleteAllOperations,
+  getOperations,
   insertOperation,
 };

@@ -1,15 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const { catchErrorHandler } = require('../../utils/errorHandler');
-const { createNewOperation, insertOperation } = require('./controller');
+const {
+  createNewOperation,
+  deleteAllOperations,
+  getOperations,
+  insertOperation,
+} = require('./controller');
+
+router.delete('/', async (req, res) => {
+  await deleteAllOperations();
+  res.status(200).json({ message: 'All operations deleted' });
+});
+
+router.get('/', async (req, res) => {
+  let operations = await getOperations();
+  res.status(200).json(operations);
+});
 
 router.post('/', async (req, res) => {
   let operation = req.body;
   operation = await createNewOperation(operation);
-  response = await insertOperation(operation);
+  operation = await insertOperation(operation);
 
-  res.status(200).json(response);
+  res.status(200).json(operation);
 });
-//.catch((e) => catchErrorHandler(e, req, res, next));
 
 module.exports = router;

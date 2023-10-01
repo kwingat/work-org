@@ -1,3 +1,9 @@
+import {
+  deleteAllOperations,
+  fetchOperations,
+  insertOperation,
+} from '../actions/operations';
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -6,6 +12,7 @@ const initialState = {
   uatStart: null,
   uatComp: null,
   implement: null,
+  operations: [],
 };
 
 const operationSlice = createSlice({
@@ -28,7 +35,20 @@ const operationSlice = createSlice({
       state.implement = action.payload;
     },
   },
+  extraReducers: (operation) => {
+    operation.addCase(insertOperation.fulfilled, (state, action) => {
+      state.operations.push(action.payload);
+    });
+    operation.addCase(fetchOperations.fulfilled, (state, action) => {
+      state.operations = action.payload;
+    });
+    operation.addCase(deleteAllOperations.fulfilled, (state, action) => {
+      state.operations = [];
+    });
+  },
 });
+
 export const { setName, setDevComp, setUatStart, setUatComp, setImplement } =
   operationSlice.actions;
+
 export default operationSlice.reducer;
