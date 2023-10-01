@@ -48,7 +48,9 @@ const operationSlice = createSlice({
   },
 });
 
-export const { setName, setDevComp, setUatStart, setUatComp, setImplement } =
-  operationSlice.actions;
+const { actions, reducer } = operationSlice;
 
-export default operationSlice.reducer;
+export const { setName, setDevComp, setUatStart, setUatComp, setImplement } =
+  actions;
+
+export default reducer;

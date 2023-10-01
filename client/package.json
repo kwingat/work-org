@@ -49,11 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": {
-    "/*": {
-      "target": "http://localhost:15000",
-      "secure": false,
-      "changeOrigin": true
-    }
-  }
+  "proxy": "http://localhost:15000"
 }
