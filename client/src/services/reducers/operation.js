@@ -1,10 +1,7 @@
-import {
-  deleteAllOperations,
-  fetchOperations,
-  insertOperation,
-} from '../actions/operation';
+import { deleteAllOperations, fetchOperations } from '../actions/operations';
 
 import { createSlice } from '@reduxjs/toolkit';
+import { insertOperation } from '../actions/operation';
 
 const initialState = {
   name: '',

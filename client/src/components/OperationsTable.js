@@ -1,7 +1,7 @@
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { Table } from '@mui/joy';
-import { fetchOperations } from '../services/actions/operation';
+import { fetchOperations } from '../services/actions/operations';
 import { simpleDate } from '../helpers/dates';
 import { useEffect } from 'react';
 
