@@ -5,7 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import OperationInsert from './components/OperationInsert';
 import OperationsTable from './components/OperationsTable';
 import React from 'react';
-import { deleteAllOperations } from './services/actions/operations';
+import { deleteAllOperations } from './services/actions/operation';
 import { useDispatch } from 'react-redux';
 
 const App = () => {

@@ -2,7 +2,7 @@ import {
   deleteAllOperations,
   fetchOperations,
   insertOperation,
-} from '../actions/operations';
+} from '../actions/operation';
 
 import { createSlice } from '@reduxjs/toolkit';
 

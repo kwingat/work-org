@@ -1,18 +1,18 @@
-import { FormControl, FormLabel, Input, Sheet, Typography } from "@mui/joy";
+import { FormControl, FormLabel, Input, Sheet, Typography } from '@mui/joy';
 import {
   setDevComp,
   setImplement,
   setName,
   setUatComp,
   setUatStart,
-} from "../services/reducers/operations";
-import { useDispatch, useSelector } from "react-redux";
+} from '../services/reducers/operation';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
-import { Fragment } from "react";
-import dayjs from "dayjs";
-import { insertOperation } from "../services/actions/operations";
+import { Button } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import { Fragment } from 'react';
+import dayjs from 'dayjs';
+import { insertOperation } from '../services/actions/operation';
 
 const OperationsInsert = () => {
   const { name, devComp, uatStart, uatComp, implement } = useSelector(
@@ -25,22 +25,22 @@ const OperationsInsert = () => {
   };
 
   const onChange = (e) => {
-    const { name = "", value = "" } = e;
+    const { name = '', value = '' } = e;
 
     switch (name) {
-      case "name":
+      case 'name':
         dispatch(setName(value));
         break;
-      case "devComp":
+      case 'devComp':
         dispatch(setDevComp(value));
         break;
-      case "uatStart":
+      case 'uatStart':
         dispatch(setUatStart(value));
         break;
-      case "uatComp":
+      case 'uatComp':
         dispatch(setUatComp(value));
         break;
-      case "implement":
+      case 'implement':
         dispatch(setImplement(value));
         break;
       default:
@@ -57,11 +57,11 @@ const OperationsInsert = () => {
     <Fragment>
       <Sheet
         sx={{
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           gap: 2,
-          borderRadius: "sm",
-          boxShadow: "md",
+          borderRadius: 'sm',
+          boxShadow: 'md',
         }}
       >
         <div>
@@ -69,7 +69,7 @@ const OperationsInsert = () => {
             <b>Add Operation</b>
           </Typography>
         </div>
-        <div style={{ display: "flex", flexDirection: "row", gap: 2 }}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
           <FormControl>
             <FormLabel>Name</FormLabel>
             <Input
@@ -87,7 +87,7 @@ const OperationsInsert = () => {
             <DatePicker
               name="devComp"
               value={dayjs(devComp)}
-              onChange={(e) => onChange({ name: "devComp", value: getDate(e) })}
+              onChange={(e) => onChange({ name: 'devComp', value: getDate(e) })}
             />
           </FormControl>
           <FormControl>
@@ -96,7 +96,7 @@ const OperationsInsert = () => {
               name="uatStart"
               value={dayjs(uatStart)}
               onChange={(e) =>
-                onChange({ name: "uatStart", value: getDate(e) })
+                onChange({ name: 'uatStart', value: getDate(e) })
               }
             />
           </FormControl>
@@ -105,7 +105,7 @@ const OperationsInsert = () => {
             <DatePicker
               name="uatComp"
               value={dayjs(uatComp)}
-              onChange={(e) => onChange({ name: "uatComp", value: getDate(e) })}
+              onChange={(e) => onChange({ name: 'uatComp', value: getDate(e) })}
             />
           </FormControl>
           <FormControl>
@@ -115,7 +115,7 @@ const OperationsInsert = () => {
               value={dayjs(implement)}
               onChange={(e) =>
                 onChange({
-                  name: "implement",
+                  name: 'implement',
                   value: getDate(e),
                 })
               }
