@@ -10,15 +10,16 @@ import { useDispatch } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
-  onclick = () => {
-    dispatch(deleteAllOperations());
+  onclick = (e) => {
+    e.preventDefault();
+    // dispatch(deleteAllOperations());
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <OperationInsert />
       <OperationsTable />
-      <button onClick={(e) => onclick(e)}>Delete Everything</button>
+      {/* <button onClick={(e) => onclick(e)}>Delete Everything</button> */}
     </LocalizationProvider>
   );
 };
