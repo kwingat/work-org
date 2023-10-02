@@ -15,7 +15,7 @@ const OperationsTable = () => {
 
   useEffect(() => {
     dispatch(fetchOperations());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Table>

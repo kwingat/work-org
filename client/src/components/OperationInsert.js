@@ -11,20 +11,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import { Fragment } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
 import { insertOperation } from '../services/actions/operation';
+import { simpleDate } from '../helpers/dates';
+import { useSnackbar } from 'notistack';
 
 const OperationsInsert = () => {
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { name, devComp, uatStart, uatComp, implement } = useSelector(
     (state) => state.operations,
   );
-  const dispatch = useDispatch();
 
-  const submitAdd = async (e) => {
+  const submitAdd = (e) => {
+    if (!name) {
+      console.log('Please enter a name');
+      enqueueSnackbar('Please enter a name');
+      return;
+    }
     dispatch(insertOperation({ name, devComp, uatStart, uatComp, implement }));
   };
 
   const onChange = (e) => {
+    e.preventDefault();
     const { name = '', value = '' } = e;
 
     switch (name) {
@@ -86,6 +96,7 @@ const OperationsInsert = () => {
             <FormLabel>Dev Completion</FormLabel>
             <DatePicker
               name="devComp"
+              defaultValue={simpleDate(dayjs())}
               value={dayjs(devComp)}
               onChange={(e) => onChange({ name: 'devComp', value: getDate(e) })}
             />
@@ -94,6 +105,7 @@ const OperationsInsert = () => {
             <FormLabel>UAT Start</FormLabel>
             <DatePicker
               name="uatStart"
+              defaultValue={simpleDate(dayjs())}
               value={dayjs(uatStart)}
               onChange={(e) =>
                 onChange({ name: 'uatStart', value: getDate(e) })
@@ -104,6 +116,7 @@ const OperationsInsert = () => {
             <FormLabel>UAT Completion</FormLabel>
             <DatePicker
               name="uatComp"
+              defaultValue={simpleDate(dayjs())}
               value={dayjs(uatComp)}
               onChange={(e) => onChange({ name: 'uatComp', value: getDate(e) })}
             />
@@ -112,6 +125,7 @@ const OperationsInsert = () => {
             <FormLabel>Implement</FormLabel>
             <DatePicker
               name="implement"
+              defaultValue={simpleDate(dayjs())}
               value={dayjs(implement)}
               onChange={(e) =>
                 onChange({
@@ -122,7 +136,7 @@ const OperationsInsert = () => {
             />
           </FormControl>
           <Button
-            onClick={(e) => submitAdd(e)}
+            onClick={(e) => enqueueSnackbar('Please enter a name')}
             variant="contained"
             color="primary"
             sx={{ mt: 1 }}

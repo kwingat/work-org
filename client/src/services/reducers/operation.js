@@ -1,14 +1,16 @@
 import { deleteAllOperations, fetchOperations } from '../actions/operations';
 
 import { createSlice } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
 import { insertOperation } from '../actions/operation';
+import { simpleDate } from '../../helpers/dates';
 
 const initialState = {
   name: '',
-  devComp: null,
-  uatStart: null,
-  uatComp: null,
-  implement: null,
+  devComp: simpleDate(dayjs()),
+  uatStart: simpleDate(dayjs()),
+  uatComp: simpleDate(dayjs()),
+  implement: simpleDate(dayjs()),
   operations: [],
 };
 
