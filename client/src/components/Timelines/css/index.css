@@ -1,0 +1,95 @@
+.rt * {
+  /* box-sizing: border-box; */
+}
+
+.rt-ganttChart {
+  display: flex;
+  flex-direction: column;
+}
+
+.rt-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.rt-layout_side {
+  background-color: #fff;
+  box-shadow: 10px 0 10px -5px rgba(12, 12, 12, 0.1);
+  width: 10%;
+}
+
+.rt-sidebar {
+  flex-direction: column;
+}
+
+.rt-sidbar_header {
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.rt-timebar-key {
+  height: 41px;
+  padding-right: 20px;
+  line-height: 40px;
+  text-align: right;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.rt-sidebar_body {
+  padding: 20px;
+}
+
+.rt-layout_main {
+  width: -webkit-fill-available;
+}
+
+.rt-layout_timeline {
+  /* overflow-x: auto; */
+}
+
+.rt-timeline {
+  /* position: relative;
+  overflow: hidden; */
+}
+
+.rt-marker--now {
+  /* color: #ff007f;
+  border-color: rgba(255, 0, 127, 0.5); */
+}
+
+.rt-marker {
+  /* position: absolute;
+  z-index: 2;
+  top: 40px;
+  bottom: 0;
+  margin-left: -1px;
+  border-left: 2px solid;
+  opacity: 0;
+  pointer-events: none; */
+}
+
+.rt-marker--pointer {
+  /* color: #888;
+  border-color: rgba(136, 136, 136, 0.5); */
+}
+
+.rt-timebar {
+  background-color: #eee;
+}
+
+.rt-timebar__row {
+  display: inline-flex;
+  /* position: relative; */
+  height: 41px;
+  overflow: hidden;
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.rt-timebar__cell {
+  /* position: absolute;*/
+  text-align: center;
+  background-color: #fff;
+  border-left: 1px solid #eee;
+}

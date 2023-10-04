@@ -25,8 +25,8 @@ const OperationsInsert = () => {
   );
 
   const submitAdd = (e) => {
+    e.preventDefault();
     if (!name) {
-      console.log('Please enter a name');
       enqueueSnackbar('Please enter a name');
       return;
     }
@@ -34,12 +34,11 @@ const OperationsInsert = () => {
   };
 
   const onChange = (e) => {
-    e.preventDefault();
     const { name = '', value = '' } = e;
 
     switch (name) {
       case 'name':
-        dispatch(setName(value));
+        dispatch(setName(value.trim()));
         break;
       case 'devComp':
         dispatch(setDevComp(value));
@@ -136,7 +135,7 @@ const OperationsInsert = () => {
             />
           </FormControl>
           <Button
-            onClick={(e) => enqueueSnackbar('Please enter a name')}
+            onClick={(e) => submitAdd(e)}
             variant="contained"
             color="primary"
             sx={{ mt: 1 }}
