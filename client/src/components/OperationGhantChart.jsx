@@ -4,11 +4,19 @@ import createTime from '../helpers/time';
 import { useState } from 'react';
 
 // create material ui component for an operation ghant chart
-const OperationGhantChart = ({ now, scale, timebar, tracks }) => {
+const OperationGhantChart = ({ now, timebar, tracks }) => {
+  const scale = {
+    start: new Date(2022, 1, 1),
+    end: new Date(2024, 12, 31),
+    zoom: 2,
+    zoomMin: 1,
+    zoomMax: 10,
+    minWidth: 20,
+  };
   const [time, setTime] = useState(
     createTime({ ...scale, viewportWidth: 1000 }),
   );
-  //console.log('OperationGhantChart:', timebar);
+  console.log('OperationGhantChart:', scale);
   return (
     <div className="rt-ganttChart">
       <h1>Operation Ghant Chart</h1>

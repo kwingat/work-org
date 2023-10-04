@@ -3,7 +3,7 @@ import '../../css/index.css';
 import PropTypes from 'prop-types';
 import Row from './Row';
 
-const Timebar = ({ time = '', rows = [] }) => {
+const Timebar = ({ time = {}, rows = [] }) => {
   return (
     <div className="rt-timebar">
       {rows.map(({ id = '', title = '', cells, style }) => (
