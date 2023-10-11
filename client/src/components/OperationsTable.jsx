@@ -11,11 +11,11 @@ const OperationsTable = () => {
     [shallowEqual],
   );
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchOperations());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchOperations());
+  // }, [dispatch]);
 
   return (
     <Table>

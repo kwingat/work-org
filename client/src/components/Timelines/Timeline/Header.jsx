@@ -18,25 +18,25 @@ const Header = ({ time, timebar }) => {
   );
 };
 
-Header.propTypes = {
-  time: PropTypes.shape({}).isRequired,
-  timebar: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string,
-    }).isRequired,
-  ).isRequired,
-  //   onMove: PropTypes.func.isRequired,
-  //   onEnter: PropTypes.func.isRequired,
-  //   onLeave: PropTypes.func.isRequired,
-  //   width: PropTypes.string.isRequired,
-  //   sticky: PropTypes.shape({
-  //     isSticky: PropTypes.bool.isRequired,
-  //     setHeaderHeight: PropTypes.func.isRequired,
-  //     viewportWidth: PropTypes.number.isRequired,
-  //     handleHeaderScrollY: PropTypes.func.isRequired,
-  //     scrollLeft: PropTypes.number.isRequired,
-  //   }),
-};
+// Header.propTypes = {
+//   time: PropTypes.shape({}).isRequired,
+//   timebar: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       title: PropTypes.string,
+//     }).isRequired,
+//   ).isRequired,
+//   //   onMove: PropTypes.func.isRequired,
+//   //   onEnter: PropTypes.func.isRequired,
+//   //   onLeave: PropTypes.func.isRequired,
+//   //   width: PropTypes.string.isRequired,
+//   //   sticky: PropTypes.shape({
+//   //     isSticky: PropTypes.bool.isRequired,
+//   //     setHeaderHeight: PropTypes.func.isRequired,
+//   //     viewportWidth: PropTypes.number.isRequired,
+//   //     handleHeaderScrollY: PropTypes.func.isRequired,
+//   //     scrollLeft: PropTypes.number.isRequired,
+//   //   }),
+// };
 
 export default Header;

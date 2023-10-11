@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const START_YEAR = 2020;
 export const NUM_OF_YEARS = 3;
 export const MONTH_NAMES = [
@@ -90,8 +92,8 @@ export const colourIsLight = (r, g, b) => {
 export const addMonthsToYear = (year, monthsToAdd) => {
   let y = year;
   let m = monthsToAdd;
-  while (m >= MONTHS_PER_YEAR) {
-    m -= MONTHS_PER_YEAR;
+  while (m >= 12) {
+    m -= 12;
     y += 1;
   }
   return { year: y, month: m + 1 };
@@ -293,55 +295,104 @@ const NOUNS = [
   'woodworkers',
 ];
 
+const monthsShort = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+const months = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [10, 11, 12],
+];
+
 export const randomTitle = () =>
   `${ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]} ${
     NOUNS[Math.floor(Math.random() * NOUNS.length)]
   }`;
 
-export const buildQuarterCells = () => {
-  const v = [];
-  for (let i = 0; i < QUARTERS_PER_YEAR * NUM_OF_YEARS; i += 1) {
-    const quarter = (i % 4) + 1;
-    const startMonth = i * MONTHS_PER_QUARTER;
-    const s = addMonthsToYear(START_YEAR, startMonth);
-    const e = addMonthsToYear(START_YEAR, startMonth + MONTHS_PER_QUARTER);
-    v.push({
-      id: `${s.year}-q${quarter}`,
-      title: `Q${quarter} ${s.year}`,
-      start: new Date(`${s.year}-${s.month}-01`),
-      end: new Date(`${e.year}-${e.month}-01`),
-    });
-  }
-  return v;
+export const getQuarter = (date) => {
+  return {
+    year: date.getFullYear(),
+    quarter: Math.ceil((date.getMonth() + 1) / 3),
+  };
 };
 
-export const buildMonthCells = () => {
-  const v = [];
-  for (let i = 0; i < MONTHS_PER_YEAR * NUM_OF_YEARS; i += 1) {
-    const startMonth = i;
-    const start = addMonthsToYearAsDate(START_YEAR, startMonth);
-    const end = addMonthsToYearAsDate(START_YEAR, startMonth + 1);
-    v.push({
-      id: `m${startMonth}`,
-      title: MONTH_NAMES[i % 12],
-      start,
-      end,
-    });
+export const buildQuarters = (sDate, eDate) => {
+  if (sDate > eDate) {
+    var t = eDate;
+    eDate = sDate;
+    sDate = t;
   }
-  return v;
+
+  sDate = new Date(sDate);
+  sDate.setDate(2);
+  var startQ = getQuarter(sDate);
+  var endQ = getQuarter(eDate);
+  var result = [startQ];
+
+  while (JSON.stringify(startQ) !== JSON.stringify(endQ)) {
+    sDate.setMonth(sDate.getMonth() + 3);
+    startQ = getQuarter(sDate);
+    result.push(startQ);
+  }
+  return result;
 };
 
-export const buildTimebar = () => [
+export const buildQuarterCells = (start, end) => {
+  const quarters = buildQuarters(start, end).map((q) => {
+    const s = addMonthsToYearAsDate(q.year, (q.quarter - 1) * 3);
+    const e = addMonthsToYearAsDate(q.year, q.quarter * 3);
+    return {
+      id: `${q.year}-q${q.quarter}`,
+      title: `Q${q.quarter} ${q.year}`,
+      start: s,
+      end: e,
+    };
+  });
+  return quarters;
+};
+
+const getMonths = (quarters) =>
+  quarters.map((quarter) => months[quarter - 1]).flat();
+
+const convertMonthToShort = (months) => {
+  return months.map((month) => monthsShort[month - 1]);
+};
+
+export const buildMonthCells = (start, end) => {
+  const quarters = buildQuarters(start, end).map((q) => q.quarter);
+  const months = convertMonthToShort(getMonths(quarters));
+  return months.map((month) => ({
+    id: `m${month}`,
+    title: month,
+    start,
+    end,
+  }));
+};
+
+export const buildTimebar = (to, from) => [
   {
     id: 'quarters',
     title: 'Quarters',
-    cells: buildQuarterCells(),
+    cells: buildQuarterCells(to, from),
     style: {},
   },
   {
     id: 'months',
     title: 'Months',
-    cells: buildMonthCells(),
+    cells: buildMonthCells(to, from),
     useAsGrid: true,
     style: {},
   },
@@ -421,4 +472,37 @@ export const buildTrack = (trackId) => {
     // link: 'www.google.com',
     isOpen: false,
   };
+};
+
+// const operations = [
+//   {
+//     _id: '651b0c3bbe754f3619ea3812',
+//     name: 'CR #85 BIT Tool Changes',
+//     devComp: '2023-10-02T04:00:00.000Z',
+//     uatStart: '2023-10-02T04:00:00.000Z',
+//     uatComp: '2023-10-02T04:00:00.000Z',
+//     implement: '2023-10-02T04:00:00.000Z',
+//     __v: 0,
+//   },
+//   {
+//     _id: '651b6374d51cab38fd57fb3f',
+//     name: 'Truli Inst',
+//     devComp: '2023-09-07T04:00:00.000Z',
+//     uatStart: '2023-09-09T04:00:00.000Z',
+//     uatComp: '2023-10-10T04:00:00.000Z',
+//     implement: '2024-01-05T05:00:00.000Z',
+//     __v: 0,
+//   },
+// ];
+
+export const getEarliestStart = (operations) => {
+  const dates = operations.map((operation) => new Date(operation.implement));
+  const earliest = new Date(Math.min(...dates));
+  return earliest;
+};
+
+export const getLatestEnd = (operations) => {
+  const dates = operations.map((operation) => new Date(operation.implement));
+  const latest = new Date(Math.max(...dates));
+  return latest;
 };

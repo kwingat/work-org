@@ -11,10 +11,10 @@ const Row = ({ time, cells, style }) => (
   </div>
 );
 
-Row.propTypes = {
-  time: PropTypes.shape({}).isRequired,
-  cells: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  style: PropTypes.shape({}),
-};
+// Row.propTypes = {
+//   time: PropTypes.shape({}).isRequired,
+//   cells: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+//   style: PropTypes.shape({}),
+// };
 
 export default Row;
