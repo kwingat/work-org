@@ -87,18 +87,4 @@ const OperationGhantChart = ({ operations }) => {
   );
 };
 
-// OperationGhantChart.propTypes = {
-//   scale: PropTypes.shape({
-//     start: PropTypes.instanceOf(Date).isRequired,
-//     end: PropTypes.instanceOf(Date).isRequired,
-//     zoom: PropTypes.number.isRequired,
-//     zoomMin: PropTypes.number,
-//     zoomMax: PropTypes.number,
-//     minWidth: PropTypes.number,
-//   }),
-//   timebar: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-//   tracks: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-//   now: PropTypes.instanceOf(Date).isRequired,
-// };
-
 export default OperationGhantChart;

@@ -13,9 +13,4 @@ const Timebar = ({ time = {}, rows = [] }) => {
   );
 };
 
-// Timebar.propTypes = {
-//   time: PropTypes.shape({}).isRequired,
-//   rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-// };
-
 export default Timebar;
