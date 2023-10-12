@@ -15,7 +15,8 @@
 .rt-layout_side {
   background-color: #fff;
   box-shadow: 10px 0 10px -5px rgba(12, 12, 12, 0.1);
-  width: 10%;
+  width: 240px;
+  z-index: 2;
 }
 
 .rt-sidebar {
@@ -41,16 +42,16 @@
 }
 
 .rt-layout_main {
-  width: -webkit-fill-available;
+  width: calc(100% - 240px);
 }
 
 .rt-layout_timeline {
-  /* overflow-x: auto; */
+  overflow-x: auto;
 }
 
 .rt-timeline {
-  /* position: relative;
-  overflow: hidden; */
+  width: 1000px;
+  overflow: hidden;
 }
 
 .rt-marker--now {
